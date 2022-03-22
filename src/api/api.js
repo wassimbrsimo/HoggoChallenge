@@ -39,10 +39,10 @@ export const getGeoLocationFromAddress = async (text, callback) => {
     .then(
       response => {
         var response = response.data;
-        console.log('geo', response);
         callback(
-          response.addresses[0].latitude,
-          response.addresses[0].longitude,
+          response.addresses[0]?.latitude,
+          response.addresses[0]?.longitude,
+          !response.addresses.length,
         );
       },
       error => {

@@ -7,8 +7,8 @@ export default function WeatherWidget(props) {
   return (
     <View>
       <View style={Styles.container}>
-        <View style={Styles.secondaryRow}>
-          <Text style={Styles.secondaryText}> TODAY </Text>
+        <View style={Styles.primaryRow}>
+          <Text style={Styles.boldText}> TODAY </Text>
           <Text style={Styles.smallText}> Sat, 3 Aug </Text>
         </View>
         <View style={Styles.weatherRow}>
@@ -32,8 +32,8 @@ export default function WeatherWidget(props) {
             <Text style={Styles.weatherText}>{props.data.weather[0].main}</Text>
           </View>
         </View>
-        {props.location && (
-          <View style={Styles.secondaryRow}>
+        {!!props.location && (
+          <View style={Styles.row}>
             <Icon name="location-pin" size={30} color="yellow" />
             <Text style={Styles.secondaryText}>{props.location}</Text>
           </View>
@@ -69,7 +69,7 @@ const Styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     borderRadius: 20,
-    marginVertical: 10,
+    marginTop: 20,
     padding: 20,
     backgroundColor: '#2e1781',
     shadowColor: '#000',
@@ -84,8 +84,10 @@ const Styles = StyleSheet.create({
   },
   bigText: {color: 'white', fontWeight: 'bold', fontSize: 33},
   secondaryText: {color: 'white', fontSize: 12},
+  boldText: {color: 'white', fontWeight: 'bold', fontSize: 16},
   smallText: {color: 'white', fontSize: 10},
   rowItems: {alignItems: 'center'},
+  primaryRow: {flexDirection: 'row', justifyContent: 'space-between'},
   secondaryRow: {flexDirection: 'row', justifyContent: 'space-around'},
   weatherText: {
     top: -10,
@@ -95,7 +97,7 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
     borderRadius: 10,
     overflow: 'hidden',
-    backgroundColor: '#122591',
+    backgroundColor: '#00000058',
   },
   weatherRow: {
     flexDirection: 'row',
@@ -104,4 +106,5 @@ const Styles = StyleSheet.create({
     alignContent: 'center',
   },
   flex: {flex: 1},
+  row: {flexDirection: 'row', alignItems: 'center'},
 });

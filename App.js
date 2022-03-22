@@ -26,6 +26,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Main from './src/screens/mainScreen';
+import RequestProvider from './src/contexts/RequestContext';
+import SearchProvider from './src/contexts/SearchContext';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -64,7 +66,11 @@ const App: () => Node = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Main />
+      <RequestProvider>
+        <SearchProvider>
+          <Main />
+        </SearchProvider>
+      </RequestProvider>
     </SafeAreaView>
   );
 };

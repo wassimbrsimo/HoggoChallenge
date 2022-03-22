@@ -22,21 +22,29 @@ export default function AirQualityWidget(props) {
   return (
     <View style={Styles.container}>
       <Speedometer value={props.value}>
-        <Background />
         <Arc arcWidth={30} />
         <Needle
-          color="white"
+          color="grey"
           baseWidth={10}
           circleColor={AQI_Colors[AQI_INDEX]}
         />
-        <Progress arcWidth={50} color={AQI_Colors[AQI_INDEX]} />
+        <Progress arcWidth={30} color={AQI_Colors[AQI_INDEX]} />
         <Indicator />
       </Speedometer>
       <Text style={Styles.categoryText}>{AQI_Category[AQI_INDEX]}</Text>
+      <Text style={Styles.bottomText}>Air Quality Index</Text>
     </View>
   );
 }
 const Styles = StyleSheet.create({
-  container: {alignSelf: 'center'},
-  categoryText: {fontSize: 20, fontWeight: 'bold', color: 'white'},
+  container: {alignSelf: 'center', marginTop: 30},
+  categoryText: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: 70,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  bottomText: {color: 'white', fontWeight: 'bold', textAlign: 'center'},
 });

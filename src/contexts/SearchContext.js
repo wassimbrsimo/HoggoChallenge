@@ -14,20 +14,25 @@ export const SearchContext = React.createContext({
 export default function SearchProvider({children}) {
   const [suggestionList, setSuggestionList] = useState([]);
   const [searchText, setSearchText] = useState();
-  const {onSubmitRequest} = useContext(RequestContext);
+  const {onSubmitRequest, setError, setLocationName} =
+    useContext(RequestContext);
 
   const onSubmit = () => {
-    getGeoLocationFromAddress(searchText, (lat, long) =>
-      onSubmitRequest('', lat, long),
+    setSuggestionList('');
+    getGeoLocationFromAddress(
+      searchText,
+      (lat, long, error) =>
+        error ? setError(true) : onSubmitRequest(lat, long),
+      setLocationName(searchText),
     );
   };
   const onSelect = (name, lat, long) => {
     setSuggestionList('');
     setSearchText(name);
-    onSubmitRequest(name, lat, long);
+    onSubmitRequest(lat, long);
+    setLocationName(name);
   };
   const onTextUpdate = text => {
-    console.log('text update ', text.length ? 'true' : 'false');
     setSearchText(text);
     text.length
       ? getSuggestions(text, data => {
@@ -41,7 +46,7 @@ export default function SearchProvider({children}) {
         suggestionList,
         setSuggestionList,
         searchText,
-        setSearchText,
+        setSearchText: setSearchText,
         onSubmit,
         onSelect,
         onTextUpdate,
