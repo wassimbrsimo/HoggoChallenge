@@ -1,6 +1,6 @@
-import React, {useMemo, useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import React, {useMemo, useEffect, useContext, useState} from 'react';
 import {getAirData, getWeatherData} from '../api/api';
+import {SearchContext} from './SearchContext';
 
 export const RequestContext = React.createContext({
   weatherData: null,
@@ -21,12 +21,17 @@ export default function RequestProvider({children}) {
   const [locationName, setLocationName] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const {setSuggestionList} = useContext(SearchContext);
   const onSubmitRequest = async (lat, long) => {
     setError(false);
     setLoading(true);
     getWeatherData(lat, long, setWeatherData);
     getAirData(long, long, setAirQualityData);
   };
+
+  useEffect(() => {
+    setSuggestionList([]);
+  }, [loading, setSuggestionList]);
 
   useEffect(() => {
     weatherData && airQualityData && setLoading(false);

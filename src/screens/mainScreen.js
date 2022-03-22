@@ -33,6 +33,8 @@ export default function Main() {
       alignSelf: 'center',
       top: Dimensions.get('window').height / 2.5,
     },
+    onboardingText: {color: 'gray', fontWeight: 'bold', fontSize: 20},
+    errorText: {color: 'tomato', fontWeight: 'bold', fontSize: 20},
   });
   return (
     <View>
@@ -46,20 +48,16 @@ export default function Main() {
       {airQualityData && !loading && !error && (
         <AirQualityWidget value={airQualityData.aqi} />
       )}
-      {/* {!weatherData && !airQualityData && !loading && (
+      {!weatherData && !airQualityData && !loading && (
         <View style={Styles.onboarding}>
           <Icon name="search" color="#2e1781" size={100} />
-          <Text style={{color: 'gray', fontWeight: 'bold', fontSize: 20}}>
-            Search a place
-          </Text>
+          <Text style={Styles.onboardingText}>Search a place</Text>
         </View>
-      )} */}
+      )}
       {error && (
         <View style={Styles.onboarding}>
           <Icon name="warning" color="yellow" size={100} />
-          <Text style={{color: 'tomato', fontWeight: 'bold', fontSize: 20}}>
-            Error ! please try again
-          </Text>
+          <Text style={Styles.errorText}>Error ! please try again</Text>
         </View>
       )}
     </View>

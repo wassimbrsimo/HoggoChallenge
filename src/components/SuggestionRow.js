@@ -3,7 +3,7 @@ import {TouchableOpacity, StyleSheet, Text} from 'react-native';
 
 export default function SuggestionRow({item, onSelect}) {
   const Styles = StyleSheet.create({
-    container: {padding: 5, borderWidth: 1, borderColor: '#ececec'},
+    container: {padding: 5},
   });
   return (
     <TouchableOpacity

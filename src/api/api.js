@@ -21,7 +21,6 @@ export const getSuggestions = async (text, callback) => {
         callback(response);
       },
       error => {
-        var status = error.response;
         console.error(error);
       },
     );
@@ -46,7 +45,6 @@ export const getGeoLocationFromAddress = async (text, callback) => {
         );
       },
       error => {
-        var status = error.response;
         console.error(error);
       },
     );
@@ -79,7 +77,6 @@ export const getWeatherData = async (lat, long, callback) => {
         callback(response);
       },
       error => {
-        var status = error.response;
         console.error(error);
       },
     );
@@ -96,7 +93,6 @@ export const getAirData = async (lat, long, callback) => {
         callback(response.data);
       },
       error => {
-        var status = error.response;
         console.error(error);
       },
     );
